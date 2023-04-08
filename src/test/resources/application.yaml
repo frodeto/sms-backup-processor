@@ -1,0 +1,8 @@
+
+spring:
+  application:
+    name: sms-backup-processor
+    description: Service reading sms backup files
+
+message:
+  destination: test
