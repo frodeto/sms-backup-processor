@@ -16,6 +16,7 @@ class Sms(
     val readable_date: String? = null,
     val contact_name: String? = null
 ) {
+
     companion object {
         fun of(smses: List<no.torvundconsulting.sms.model.simpleframework.Sms>) = smses.map { of(it) }
 
@@ -40,5 +41,9 @@ class Sms(
                 ZoneId.systemDefault()
             ) }
         }
+    }
+
+    override fun toString(): String {
+        return "Sms(date=$date, address=$address, body=$body, contact_name=$contact_name)"
     }
 }

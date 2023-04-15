@@ -15,22 +15,23 @@ class Processor(
     val messageRepository: MessageRepository,
     val logger: Logger
 ) {
-    fun process(paths: FileIOInfo) {
+    internal fun process(paths: FileIOInfo): Int {
         val messageList: MutableList<Messages> = mutableListOf()
         paths.fromBackupFiles.forEach {
             messageList.add(read(File(it)))
         }
         write(paths.destinationFolder, messageList)
+        return messageList.size
     }
 
-    fun read(xmlFile: File): Messages {
+    internal fun read(xmlFile: File): Messages {
         logger.info("Reading from ${xmlFile.canonicalPath}")
         val serializer: Serializer = Persister()
         val fromXml = serializer.read(Smses::class.java, xmlFile)
         return Messages.of(fromXml)
     }
 
-    fun write(destination: String, messageList: List<Messages>) {
+    internal fun write(destination: String, messageList: List<Messages>) {
         logger.info("Writing to $destination")
         messageRepository.write(destination, messageList)
     }

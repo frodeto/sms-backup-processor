@@ -5,4 +5,4 @@ spring:
     description: Service reading sms backup files
 
 message:
-  destination: file
+  destination: test
