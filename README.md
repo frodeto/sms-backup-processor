@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This project is intended as a demo/example project for Spring Boot/Kotlin with Maven,
+This project is intended as a demo/example project for Spring Boot and Kotlin with Maven,
 and also an example usage of XML deserialization using the framework `Simple` (http://simple.sourceforge.net).
 
 ## Functionality

@@ -29,7 +29,7 @@ internal class ProcessorTest {
 
     @Test
     fun testReader() {
-        val messages = processor.read(File("./src/test/resources/test-smses.xml"))
+        val messages = processor.read(File(TEST_FILE))
         assertEquals(2, messages.sms.size)
         assertEquals(2, messages.mms.size)
     }
@@ -43,43 +43,47 @@ internal class ProcessorTest {
     @Test
     fun testProcess() {
         val fileIOInfo = FileIOInfo(
-            listOf("/Users/frodetorvund/Dropbox/Backup/sms/sms_20130203114812.xml"),
+            listOf("./src/test/resources/test-smses.xml"),
             "./tmp"
         )
         processor.process(fileIOInfo)
     }
 
-    private fun createMockMessageList(): List<Messages> {
-        val messages = mutableListOf<Messages>()
-        messages.add(Messages("4", "test", LocalDateTime.now(), createMockSmses(), createMockMmses()))
-        return messages
-    }
+    companion object {
+        private const val TEST_FILE = "./src/test/resources/test-smses.xml"
 
-    private fun createMockMmses(): List<Mms> {
-        return listOf(
-            Mms(
-                texts = listOf(),
-                images = mapOf(
-                    Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
-                )
-            ),
-            Mms(
-                texts = listOf(),
-                images = mapOf(
-                    Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
+        fun createMockMessageList(): List<Messages> {
+            val messages = mutableListOf<Messages>()
+            messages.add(Messages("4", "test", LocalDateTime.now(), createMockSmses(), createMockMmses()))
+            return messages
+        }
+
+        private fun createMockMmses(): List<Mms> {
+            return listOf(
+                Mms(
+                    texts = listOf(),
+                    images = mapOf(
+                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
+                    )
+                ),
+                Mms(
+                    texts = listOf(),
+                    images = mapOf(
+                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
+                    )
                 )
             )
-        )
-    }
+        }
 
-    private fun createMockSmses(): List<Sms> {
-        return listOf(
-            Sms(
-                body = "test 1"
-            ),
-            Sms(
-                body = "test 2"
+        private fun createMockSmses(): List<Sms> {
+            return listOf(
+                Sms(
+                    body = "test 1"
+                ),
+                Sms(
+                    body = "test 2"
+                )
             )
-        )
+        }
     }
 }

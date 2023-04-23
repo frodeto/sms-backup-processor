@@ -31,7 +31,7 @@ class Sms(
                 sms.sc_toa,
                 sms.service_center,
                 sms.readable_date,
-                sms.contact_name
+                sms.contact_name ?: sms.name
             )
         }
 
@@ -45,5 +45,9 @@ class Sms(
 
     override fun toString(): String {
         return "Sms(date=$date, address=$address, body=$body, contact_name=$contact_name)"
+    }
+
+    fun toCSV(): String {
+        return "$date,$address,$body,$contact_name"
     }
 }

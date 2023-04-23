@@ -34,4 +34,7 @@ class Sms {
 
     @field:Attribute(name = "contact_name", required = false)
     var contact_name: String? = null
+
+    @field:Attribute(name = "name", required = false)
+    var name: String? = null
 }

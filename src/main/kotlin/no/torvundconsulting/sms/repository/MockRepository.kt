@@ -5,7 +5,6 @@ import no.torvundconsulting.sms.model.Sms
 import org.slf4j.Logger
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 
 @Repository
 @ConditionalOnProperty(value = ["message.destination"], havingValue = "test")
