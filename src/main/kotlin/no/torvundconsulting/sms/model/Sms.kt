@@ -16,7 +16,13 @@ class Sms(
     val service_center: String? = null,
     val readable_date: String? = null,
     val contact_name: String? = null
-) {
+): Comparable<Sms> {
+
+    override fun compareTo(other: Sms): Int = when {
+        this.contact_name != other.contact_name -> compareValues(this.contact_name, other.contact_name)
+        this.date != other.date -> compareValues(this.date, other.date)
+        else -> 0
+    }
 
     companion object {
         fun of(smses: List<no.torvundconsulting.sms.model.simpleframework.Sms>) = smses.map { of(it) }
@@ -49,6 +55,6 @@ class Sms(
     }
 
     fun toCSV(): String {
-        return "$date,$address,$body,$contact_name"
+        return "$contact_name;$body;$date;$address"
     }
 }
