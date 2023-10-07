@@ -52,7 +52,7 @@ class FileRepository(
             logger.info("Writing $filename to $destination")
             val file = FileUtil.constructFile("$destination/$filename")
             val absolutePath = FileUtil.absolutePath(file)
-            val csv = value.joinToString("\n}") { it.toCSV() }
+            val csv = value.joinToString("\n") { it.toCSV() }
             FileUtil.writeText(file, csv)
             logger.info("Wrote $absolutePath")
 
