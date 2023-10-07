@@ -3,7 +3,9 @@ package no.torvundconsulting.sms.model
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.util.*
 
+@Suppress("unused", "PropertyName")
 class Mms(
     val date: LocalDateTime? = null,
     val readable_date: String? = null,
@@ -11,12 +13,12 @@ class Mms(
     val address: String? = null,
     val contact_name: String? = null,
     val texts: List<String?>,
-    val images: Map<String, ByteArray?>,
+    val images: Map<String, String?>,
 ) {
     companion object {
         fun of(mmses: List<no.torvundconsulting.sms.model.simpleframework.Mms>) = mmses.map { of(it) }
 
-        fun of(mms: no.torvundconsulting.sms.model.simpleframework.Mms): Mms {
+        private fun of(mms: no.torvundconsulting.sms.model.simpleframework.Mms): Mms {
             return Mms(
                 getDate(mms),
                 mms.readable_date,
@@ -28,8 +30,8 @@ class Mms(
             )
         }
 
-        private fun getImages(mms: no.torvundconsulting.sms.model.simpleframework.Mms): Map<String, ByteArray?> {
-            return mms.parts.filter { it.ct == "image/jpeg" }.map { it.name!! to it.data?.toByteArray() }.toMap()
+        private fun getImages(mms: no.torvundconsulting.sms.model.simpleframework.Mms): Map<String, String?> {
+            return mms.parts.filter { it.ct == "image/jpeg" }.associate { (it.name ?: randomName()) to it.data }
         }
 
         private fun getTexts(mms: no.torvundconsulting.sms.model.simpleframework.Mms): List<String?> {
@@ -37,10 +39,17 @@ class Mms(
         }
 
         private fun getDate(mms: no.torvundconsulting.sms.model.simpleframework.Mms): LocalDateTime? {
-            return mms.date?.let { LocalDateTime.ofInstant(
-                Instant.ofEpochMilli(it.toLong()),
-                ZoneId.systemDefault()
-            ) }
+            return mms.date?.let {
+                LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(it.toLong()),
+                    ZoneId.systemDefault()
+                )
+            }
+        }
+
+        private fun randomName(): String {
+            return UUID.randomUUID().toString() + ".jpg"
         }
     }
+
 }

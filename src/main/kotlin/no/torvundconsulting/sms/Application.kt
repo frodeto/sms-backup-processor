@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-class SmsApplication
+class Application
 
 fun main(args: Array<String>) {
-	runApplication<SmsApplication>(*args)
+	runApplication<Application>(*args)
 }

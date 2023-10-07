@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="sms-backup-processor" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="no.torvundconsulting.sms.Application" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

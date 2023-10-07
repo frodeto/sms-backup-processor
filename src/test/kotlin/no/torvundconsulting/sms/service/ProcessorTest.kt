@@ -63,13 +63,13 @@ internal class ProcessorTest {
                 Mms(
                     texts = listOf(),
                     images = mapOf(
-                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
+                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA")
                     )
                 ),
                 Mms(
                     texts = listOf(),
                     images = mapOf(
-                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA".toByteArray())
+                        Pair("test 1", "/9j/4AAQSkZJRgABAQAASABIAAD/4QBARXhpZgAATU0AKgAAAAgAAYdpAAQAAA")
                     )
                 )
             )
