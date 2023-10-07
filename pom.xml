@@ -11,7 +11,7 @@
 
 	<groupId>no.torvundconsulting</groupId>
 	<artifactId>sms-backup-processor</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.9.0</version>
 	<name>sms-backup-processor</name>
 	<description>Demo Spring Boot app reading sms backup files</description>
 
