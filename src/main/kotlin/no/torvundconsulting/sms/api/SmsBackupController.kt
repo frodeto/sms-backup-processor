@@ -23,6 +23,7 @@ class SmsBackupController(
         val count = try {
             processor.process(userInputDto)
         } catch (e: FileNotFoundException) {
+            logger.error("File not found: ${e.message}")
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ProcessingStatus("Failed", 0, "Error message: ${e.message}"))
         }
@@ -30,6 +31,7 @@ class SmsBackupController(
     }
 }
 
+@Suppress("unused")
 class ProcessingStatus(
     val status: String,
     val count: Int,

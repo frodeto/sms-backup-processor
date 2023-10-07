@@ -22,10 +22,10 @@ class FileRepository(
         FileUtil.createDirectory("$destination/images")
         writeSmsesToCSV(
             destination,
-            messageList.associate { Pair(it.backup_set ?: "set-${UUID.randomUUID()}", it.sms) })
+            messageList.associate { Pair(it.backupSet ?: "set-${UUID.randomUUID()}", it.sms) })
         writeMmses(
             "$destination/images",
-            messageList.associate { Pair(it.backup_set ?: "set-${UUID.randomUUID()}", it.mms) })
+            messageList.associate { Pair(it.backupSet ?: "set-${UUID.randomUUID()}", it.mms) })
     }
 
     private fun writeMmses(destination: String, mmsLists: Map<String, List<Mms>>) {
@@ -33,8 +33,7 @@ class FileRepository(
             value.forEach { mms ->
                 mms.images.forEach { (key, value) ->
                     if (value != null) {
-                        val filename = key
-                        val file = FileUtil.constructFile("$destination/$filename")
+                        val file = FileUtil.constructFile("$destination/$key")
                         val absolutePath = FileUtil.absolutePath(file)
                         val bytes = Base64.getDecoder().decode(value)
                         FileUtil.writeBytes(file, bytes)

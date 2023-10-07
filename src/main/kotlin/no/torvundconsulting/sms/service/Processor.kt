@@ -28,7 +28,9 @@ class Processor(
         logger.info("Reading from ${xmlFile.canonicalPath}")
         val serializer: Serializer = Persister()
         val fromXml = serializer.read(Smses::class.java, xmlFile)
-        return Messages.of(fromXml)
+        val messages = Messages.of(fromXml)
+        logger.info("Backup set ${messages.backupSet}, date ${messages.backupDate}")
+        return messages
     }
 
     internal fun write(destination: String, messageList: List<Messages>) {

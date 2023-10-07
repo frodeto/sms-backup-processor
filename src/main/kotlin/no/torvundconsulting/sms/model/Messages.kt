@@ -7,8 +7,8 @@ import java.time.ZoneId
 
 class Messages(
     val count: String? = null,
-    val backup_set: String? = null,
-    val backup_date: LocalDateTime? = null,
+    val backupSet: String? = null,
+    val backupDate: LocalDateTime? = null,
     val sms: List<Sms>,
     val mms: List<Mms>
 ) {

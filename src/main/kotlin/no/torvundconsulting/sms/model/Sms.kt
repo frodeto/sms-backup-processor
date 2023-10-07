@@ -4,6 +4,7 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 
+@Suppress("unused", "PropertyName", "MemberVisibilityCanBePrivate")
 class Sms(
     val date: LocalDateTime? = null,
     val protocol: String? = null,
